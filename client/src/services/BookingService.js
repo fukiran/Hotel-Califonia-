@@ -22,6 +22,12 @@ export default {
         return fetch(baseURL + id, {
             method: 'DELETE'
         })
+    },
+
+    PushSubscriptionOptions(id) {
+        return fetch(baseURL + id, {
+            method: 'PUT'
+        })
     }
 
 }

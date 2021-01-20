@@ -12,7 +12,7 @@ import BookingsGrid from './components/BookingsGrid';
 import BookingsForm from './components/BookingsForm';
 
 export default {
-  name: 'App',
+  name: 'app',
   components: {
     
     "bookings-grid": BookingsGrid,
@@ -41,6 +41,7 @@ export default {
       const index = this.bookings.findIndex(booking => booking._id === id);
       this.bookings.splice(index, 1)
     });
+
   }
 
 }
