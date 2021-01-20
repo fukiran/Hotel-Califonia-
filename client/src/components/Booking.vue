@@ -8,6 +8,8 @@
 </template>
 <script>
 import { eventBus } from '../main'
+import BookingService from '../services/BookingService'
+
 export default {
     name: 'booking',
     props: ['booking'],
@@ -16,10 +18,8 @@ export default {
         deleteBooking(booking) {
             const id = booking._id
             
-            // BookingService.destroyBooking(id)
-            // .then(eventBus.$emit("booking-deleted", index));
-
-            eventBus.$emit("booking-deleted", id);
+            BookingService.destroyBooking(id)
+            .then(eventBus.$emit("booking-deleted", id));
         }
     }
 }
