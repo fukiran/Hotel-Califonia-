@@ -16,5 +16,12 @@ export default {
             })
             .then(res => res.json());
             // .then(console.log('service bananas'))
+    },
+    // delete
+    destroyBooking(id) {
+        return fetch(baseURL + id, {
+            method: 'DELETE'
+        })
     }
+
 }

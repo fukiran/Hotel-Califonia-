@@ -41,6 +41,9 @@ export default {
                     email: this.email,
                     checkedIn: this.checkedIn
                 };
+                // reset fields
+                this.customer = this.email = "",
+                this.checkedIn = false
             BookingService.postBookings(booking)
             .then(eventBus.$emit("booking-added", booking));
             },
