@@ -1,17 +1,17 @@
-<template>
+<template lang="html">
   <li>
-      <h2>{{ booking.customer }}</h2>
-      <span>{{ booking.email }}</span><br>
-      <span>{{ booking.checkedIn }}</span>
+      <h2>{{ this.booking.customer }}</h2>
+      <span>{{ this.booking.email }}</span><br>
+      <span>{{ this.booking.checkedIn }}</span>
 
-        <form v-on:update="updateBooking(booking)">
+        <form v-on:submit="updateBooking(booking)">
             <label for="checkInNo">No</label>
-            <input type="radio"  name="checkIn"  v-model="booking.checkedIn" :value="true">
-            <label for="checkInYes">Yes</label>
             <input type="radio"  name="checkIn"  v-model="booking.checkedIn" :value="false">
+            <label for="checkInYes">Yes</label>
+            <input type="radio"  name="checkIn"  v-model="booking.checkedIn" :value="true">
         </form>
 
-      <button v-on:click="deleteBooking(booking) ">Delete</button>
+      <button v-on:click="deleteBooking">Delete</button>
     </li>
 </template>
 <script>
@@ -23,15 +23,16 @@ export default {
     name: 'booking',
     props: ['booking'],
     methods: {
-        deleteBooking(booking) {
-            const id = booking._id
-            BookingService.destroyBooking(id)
-            .then(eventBus.$emit("booking-deleted", id));
+        deleteBooking: function() {
+            console.log('booking.vue' + this.booking._id)
+            eventBus.$emit("booking-deleted", this.booking._id)
+            // const id = booking._id
+            // BookingService.destroyBooking(id)
+            // .then(eventBus.$emit("booking-deleted", id));
         },
 
         updateBooking(booking) {
-            const id = booking._id;
-            BookingService.putBooking(id);
+            // BookingService.putBooking(booking);
         },
         
     }

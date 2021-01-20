@@ -1,5 +1,5 @@
 <template lang="html">
-    <ul><booking v-for="(booking, index) in bookings" :key="index" :booking="booking"/></ul>
+    <ul><booking v-for="booking in bookings"  :booking="booking"></booking></ul>
 </template>
 
 <script>
@@ -9,7 +9,7 @@ export default {
     props: ['bookings'],
 
     components: {
-        booking: Booking
+        "booking": Booking
     }
 }
 </script>

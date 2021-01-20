@@ -8,26 +8,32 @@ export default {
     },
 
     // create one
-    postBookings(payload) {
-        return fetch(baseURL, {
-                method: 'POST',
-                body: JSON.stringify(payload),
-                headers: { 'Content-Type': 'application/json' }
-            })
-            .then(res => res.json());
-            // .then(console.log('service bananas'))
-    },
+    postBookings(booking) {
+    return fetch(baseURL, {
+      method: 'POST',
+      body: JSON.stringify(booking),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(res => res.json());
+  },
     // delete
     destroyBooking(id) {
+        console.log('booking service destroy id' + id)
         return fetch(baseURL + id, {
             method: 'DELETE'
         })
     },
 
-    PushSubscriptionOptions(id) {
-        return fetch(baseURL + id, {
-            method: 'PUT'
+    putBooking(booking) {
+        return fetch(baseURL + booking._id, {
+          method: 'PUT',
+          body: JSON.stringify(booking),
+          headers: { 
+            'Content-Type': 'application/json' 
+          }
         })
-    }
-
+          .then(res => res.json());
+      }
 }

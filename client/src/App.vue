@@ -1,4 +1,4 @@
-<template>
+<template lang="html">
   <div id="app">
     <bookings-form/>
     <bookings-grid :bookings="bookings"/>
@@ -7,7 +7,7 @@
 
 <script>
 import { eventBus } from './main'
-import BookingsService from './services/BookingService';
+import BookingService from './services/BookingService';
 import BookingsGrid from './components/BookingsGrid';
 import BookingsForm from './components/BookingsForm';
 
@@ -20,30 +20,35 @@ export default {
   },
   data() {
     return {
-      bookings : []
+      bookings: []
     }
   },
   methods: {
     fetchBookings() {
-      BookingsService.getBookings()
-      .then((data) => this.bookings = data)
+      BookingService.getBookings()
+      .then(data => this.bookings = data)
     },
   },
   mounted() {
     this.fetchBookings();
 
     eventBus.$on("booking-added", (booking) => {
-      this.bookings.push(booking);
+      BookingService.postBookings(booking)
+      .then(booking => this.bookings.push(booking));
+      console.log('app.vue' + booking);
+      //  this.bookings.push(booking)
     });
 
     eventBus.$on("booking-deleted", (id) => {
       
       const index = this.bookings.findIndex(booking => booking._id === id);
       this.bookings.splice(index, 1)
+      BookingService.destroyBooking(id)
     });
 
-  }
+  
 
+}
 }
 </script>
 
