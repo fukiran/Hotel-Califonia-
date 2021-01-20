@@ -1,20 +1,22 @@
 <template>
   <div id="app">
-    
+    <bookings-form/>
     <bookings-grid :bookings="bookings"/>
   </div>
 </template>
 
 <script>
+import { eventBus } from './main'
 import BookingsService from './services/BookingService';
 import BookingsGrid from './components/BookingsGrid';
+import BookingsForm from './components/BookingsForm';
 
 export default {
   name: 'App',
   components: {
     
-    "bookings-grid": BookingsGrid
-    // BookingForm    
+    "bookings-grid": BookingsGrid,
+    "bookings-form": BookingsForm    
   },
   data() {
     return {
@@ -28,8 +30,11 @@ export default {
     },
   },
   mounted() {
-    this.fetchBookings()
-    // .then(console.log('mounted bananas'));
+    this.fetchBookings();
+
+    eventBus.$on("booking-added", (booking) => {
+      this.bookings.push(booking);
+    })
   }
 
 }
