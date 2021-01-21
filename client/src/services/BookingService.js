@@ -9,15 +9,15 @@ export default {
 
     // create one
     postBookings(booking) {
-    return fetch(baseURL, {
-      method: 'POST',
-      body: JSON.stringify(booking),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(res => res.json());
-  },
+        return fetch(baseURL, {
+          method: 'POST',
+          body: JSON.stringify(booking),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+          .then(res => res.json());
+      },
     // delete
     destroyBooking(id) {
         console.log('booking service destroy id' + id)

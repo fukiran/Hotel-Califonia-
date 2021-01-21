@@ -33,10 +33,11 @@ export default {
     this.fetchBookings();
 
     eventBus.$on("booking-added", (booking) => {
+    
       BookingService.postBookings(booking)
-      .then(booking => this.bookings.push(booking));
-      console.log('app.vue' + booking);
-      //  this.bookings.push(booking)
+      .then(booking => this.bookings.push(booking));   //<--Problem here
+       console.log('app.vue' + booking);
+      //  .then(this.bookings.push(booking))
     });
 
     eventBus.$on("booking-deleted", (id) => {

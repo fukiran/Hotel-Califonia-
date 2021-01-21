@@ -26,16 +26,12 @@ export default {
         deleteBooking: function() {
             console.log('booking.vue' + this.booking._id)
             eventBus.$emit("booking-deleted", this.booking._id)
-            // const id = booking._id
-            // BookingService.destroyBooking(id)
-            // .then(eventBus.$emit("booking-deleted", id));
         },
 
         updateBooking(booking) {
             // BookingService.putBooking(booking);
         },
-        
-    }
+    }   
 }
 
 </script>

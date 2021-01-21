@@ -36,19 +36,16 @@ export default {
         methods: {
             addBooking() {
                
-                // const booking = {
-                //     customer: this.customer,
-                //     email: this.email,
-                //     checkedIn: this.checkedIn
-                // };
-                BookingService.postBookings(this.$data)
-                .then(res => eventBus.$emit('booking-added', res))
-                // .then( eventBus.$emit("booking-added", booking))
-                // .then(console.log("bookings form" + this.customer));
+                const booking = {
+                    customer: this.customer,
+                    email: this.email,
+                    checkedIn: this.checkedIn
+                };
+                eventBus.$emit("booking-added", booking)
 
                 // reset fields
-            this.customer = this.email = "",
-            this.checkedIn = false
+                this.customer = this.email = "",
+                this.checkedIn = false
             },
         },
 
